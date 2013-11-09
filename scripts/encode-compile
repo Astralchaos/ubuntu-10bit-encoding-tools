@@ -2,7 +2,7 @@
 ## Updated November 9th, 2013 12:48 AM
 ## Compiles 10-bit x264 + fdk-aac + ffmpeg for Ubuntu
 # Variables
-compiledir='$HOME/.local/src/encoding/'
+compiledir='$(echo $HOME)/.local/src/encoding/'
 compile='make -j9'
 flags='march=native -O3 -pipe -Wall'
 
