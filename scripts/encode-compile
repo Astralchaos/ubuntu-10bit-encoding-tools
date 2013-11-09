@@ -56,8 +56,6 @@ CFLAGS='$flags' $compile
 sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
 make distclean
 
-# Add /usr/local/lib to ld.so.conf
-if [ -n `"grep \"/usr/local/lib\" /etc/ld.so.conf"` ]; then
-	sudo sh -c 'echo "/usr/lib" >> /etc/ld.so.conf'
-	sudo ldconfig
-fi
+# Add /usr/local/lib to ld
+sudo sh -c "echo '/usr/local/lib' > /etc/ld.so.conf.d/encoding-tools.conf"
+sudo ldconfig
