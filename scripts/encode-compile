@@ -1,0 +1,63 @@
+#!/bin/bash
+## Updated November 9th, 2013 12:48 AM
+## Compiles 10-bit x264 + fdk-aac + ffmpeg for Ubuntu
+# Variables
+compiledir='$HOME/.local/src/encoding/'
+compile='make -j9'
+flags='march=native -O3 -pipe -Wall'
+
+# Clean up system
+sudo apt-get remove ffmpeg x264 fdk-aac -y
+sudo apt-get remove ffmpeg-git x264-git fdk-aac-git -y
+
+# Install dependencies
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install mkvtoolnix autoconf automake build-essential checkinstall git parallel libass-dev libfaac-dev libgpac-dev libmp3lame-dev libopus-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libvpx-dev libx11-dev libxext-dev libxfixes-dev pkg-config texi2html yasm zlib1g-dev libjack-jackd2-dev -y
+sudo apt-get build-dep x264 libav -y
+
+# Make and/or Clean Directory
+sudo rm $compiledir -R
+mkdir $compiledir -p
+
+# Download Git Repositories
+cd $compiledir
+git clone git://git.videolan.org/x264.git
+git clone git://github.com/mstorsjo/fdk-aac.git
+git clone git://source.ffmpeg.org/ffmpeg
+
+# Compile x264
+cd $compiledir/x264
+./configure --enable-static --enable-shared --bit-depth=10
+CFLAGS='$flags' $compile
+sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
+make distclean
+
+# Compile fdk-aac
+cd $compiledir/fdk-aac
+autoreconf -fiv
+./configure
+CFLAGS='$flags' $compile
+sudo checkinstall -y --pkgname=fdk-aac-git --pkgversion=$(cat ChangeLog | head -1)
+make distclean
+
+# Compile ffmpeg
+cd $compiledir/ffmpeg
+./configure --enable-shared --enable-gpl --enable-libass --enable-libfaac --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab
+CFLAGS='$flags' $compile
+sudo checkinstall  -y --pkgname=ffmpeg-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
+hash -r
+make distclean
+
+# Recompile x264 with lavf support
+cd $compiledir/x264
+./configure --enable-static --enable-shared --bit-depth=10
+CFLAGS='$flags' $compile
+sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
+make distclean
+
+# Add /usr/local/lib to ld.so.conf
+if [ -n `"grep \"/usr/local/lib\" /etc/ld.so.conf"` ]; then
+	sudo sh -c 'echo "/usr/lib" >> /etc/ld.so.conf'
+	sudo ldconfig
+fi

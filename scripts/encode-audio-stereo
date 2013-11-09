@@ -1,0 +1,2 @@
+#!/bin/bash
+find * -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 | parallel -j+0 --gnu nice -n 19 ffmpeg -i {} -c:a libfdk_aac -profile:a aac_he -b:a 96k {.}.aac

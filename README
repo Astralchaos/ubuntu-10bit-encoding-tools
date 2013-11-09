@@ -1,0 +1,17 @@
+Run install.sh to install the scripts into /usr/local/bin and compile the encoding tools.
+Note: You may recompile the tools at any time by running 'encode-compile'
+
+Simply cd to the directory of your files to process and type the name of one of the encoding scripts.
+It's a pretty good idea to string together the scripts using ';'.
+Example: encode-audio-stereo; encode-video-crf18; encode-merge
+
+Here are the following commands you may use:
+
+encode-audio-stereo
+encode-audio-surround
+encode-compile
+encode-merge
+encode-music
+encode-video-crf18
+encode-video-crf20
+encode-video-crf24
