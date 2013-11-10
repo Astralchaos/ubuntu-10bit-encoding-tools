@@ -12,6 +12,8 @@ encode-audio-surround
 encode-compile
 encode-merge
 encode-music 
+encode-video-crf14
+encode-video-crf16
 encode-video-crf18
 encode-video-crf20
 encode-video-crf24
