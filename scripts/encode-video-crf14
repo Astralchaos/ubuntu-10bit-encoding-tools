@@ -1,0 +1,6 @@
+#!/bin/bash
+find * -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 | while read file
+do
+echo $file
+nice -n 19 x264 --tune animation --level 5.2 --preset placebo --subme 11 --me umh --merange 64 --cabac --weightb --threads 16  --crf 14 --ref 16 --trellis 2 --bframes 16 --b-pyramid normal --deblock 1:1 --aq-mode 2 --aq-strength 1 --psy-rd 0.2:0 --rc-lookahead 100 --demuxer lavf --output "${file%.*}_encoded.mkv" "$file"
+done
