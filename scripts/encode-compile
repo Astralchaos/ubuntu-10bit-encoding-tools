@@ -7,8 +7,12 @@ compile='make -j9'
 flags='march=native -O3 -pipe -Wall'
 
 # Clean up system
-sudo apt-get remove ffmpeg x264 fdk-aac -y
-sudo apt-get remove ffmpeg-git x264-git fdk-aac-git -y
+sudo apt-get remove ffmpeg -y
+sudo apt-get remove x264 -y
+sudo apt-get remove fdk-aac -y
+sudo apt-get remove ffmpeg-git -y
+sudo apt-get remove x264-git -y
+sudo apt-get remove fdk-aac-git -y
 
 # Install dependencies
 sudo apt-get update -y
