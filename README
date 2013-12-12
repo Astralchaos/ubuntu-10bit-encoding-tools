@@ -3,12 +3,11 @@ Note: You may recompile the tools at any time by running 'encode-compile'
 
 Simply cd to the directory of your files to process and type the name of one of the encoding scripts.
 It's a pretty good idea to string scripts together with ';'.
-Example: encode-audio-stereo; encode-video-crf18; encode-merge
+Example: encode-audio; encode-video-crf18; encode-merge
 
 Here are the following commands you may use:
 
-encode-audio-stereo
-encode-audio-surround
+encode-audio
 encode-compile
 encode-merge
 encode-music 
@@ -19,7 +18,6 @@ encode-video-crf20
 encode-video-crf24
 
 The encode-video scripts all use Level 5.2 Placebo parameters for the best compression/quality.
-The encode-music script transcodes music files into 96kbps HE-AAC M4A files.
-The encode-audio-stereo transcodes the audio in videos into 96kbps HE-AAC AAC files.
-The encode-audio-surround transcodes the audio in videos into 160kbps HE-AAC AAC files.
+The encode-music script transcodes music files into Opus audio.
+The encode-audio transcodes the audio in videos into Opus audio.
 The encode-merge script merges the transcoded AAC audio files, any attachments of the original video, and the encoded 10-bit H.264 file into a new, completed encode.
