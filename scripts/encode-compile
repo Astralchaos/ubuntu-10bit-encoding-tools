@@ -13,6 +13,14 @@ sudo apt-get upgrade -y
 sudo apt-get install mkvtoolnix autoconf automake build-essential checkinstall git parallel libass-dev libfaac-dev libgpac-dev libmp3lame-dev libopus-dev libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libvpx-dev libx11-dev libxext-dev libxfixes-dev pkg-config texi2html yasm zlib1g-dev libjack-jackd2-dev -y
 sudo apt-get build-dep x264 libav -y
 
+## Precise/Saucy dependencies
+if [ $(cat /etc/lsb-release | grep precise) ] || [ $(cat /etc/lsb-release | grep saucy) ]
+   then
+      wget http://launchpadlibrarian.net/158788844/libopus-dev_1.1-0ubuntu1_amd64.deb
+      sudo dpkg -i libopus-dev*.deb
+      rm libopus-dev*
+fi
+
 # Make and/or Clean Directory
 sudo rm $compiledir -R
 mkdir $compiledir -p
