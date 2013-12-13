@@ -3,7 +3,8 @@ Note: You may recompile the tools at any time by running 'encode-compile'
 
 Simply cd to the directory of your files to process and type the name of one of the encoding scripts.
 It's a pretty good idea to string scripts together with ';'.
-Example: encode-audio; encode-video-crf18; encode-merge
+Example: cd ~/Videos/Encode/Node01; encode-audio; encode-video-crf18; encode-merge
+Example2: cd ~/Music/Encode; encode-music
 
 Here are the following commands you may use:
 
