@@ -47,7 +47,7 @@ make distclean
 
 # Compile ffmpeg
 cd $compiledir/FFmpeg
-./configure --enable-shared --enable-gpl --enable-libfaac --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --extra-ldflags=-L/usr/local/lib
+./configure --enable-shared --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --extra-ldflags=-L/usr/local/lib
 CFLAGS='$flags' $compile
 sudo checkinstall  -y --pkgname=ffmpeg-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
 hash -r
