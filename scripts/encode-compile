@@ -39,7 +39,7 @@ sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'
 make distclean
 
 # Compile ffmpeg
-cd $compiledir/ffmpeg
+cd $compiledir/FFmpeg
 ./configure --enable-shared --enable-gpl --enable-libfaac --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --extra-ldflags=-L/usr/local/lib
 CFLAGS='$flags' $compile
 sudo checkinstall  -y --pkgname=ffmpeg-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
