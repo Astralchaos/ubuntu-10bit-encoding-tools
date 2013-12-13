@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /tmp
+git clone https://github.com/mmstick/ubuntu-10bit-encoding-tools
+cd ubuntu*
+./install.sh
