@@ -29,7 +29,7 @@ mkdir $compiledir -p
 cd $compiledir
 git clone git://git.videolan.org/x264.git
 git clone git://github.com/mstorsjo/fdk-aac.git
-git clone git://git.libav.org/libav.git
+git clone https://github.com/FFmpeg/FFmpeg
 
 # Compile x264
 cd $compiledir/x264
@@ -38,11 +38,11 @@ CFLAGS='$flags' $compile
 sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
 make distclean
 
-# Compile libav
-cd $compiledir/libav
+# Compile ffmpeg
+cd $compiledir/ffmpeg
 ./configure --enable-shared --enable-gpl --enable-libfaac --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --extra-ldflags=-L/usr/local/lib
 CFLAGS='$flags' $compile
-sudo checkinstall  -y --pkgname=libav-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
+sudo checkinstall  -y --pkgname=ffmpeg-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
 hash -r
 make distclean
 
