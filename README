@@ -7,10 +7,11 @@ Example: encode-audio; encode-video-crf18; encode-merge
 
 Here are the following commands you may use:
 
-encode-audio
-encode-compile
-encode-merge
-encode-music 
+encode-audio # transcodes the audio in videos into Opus audio.
+encode-compile # compiles/recompiles the encoding tools.
+encode-git-update # downloads the latest git version and recompiles encoding tools.
+encode-merge # merges encoded/transcoded files into a MKV container.
+encode-music # transcodes music files into Opus audio.
 encode-video-crf14
 encode-video-crf16
 encode-video-crf18
@@ -18,6 +19,5 @@ encode-video-crf20
 encode-video-crf24
 
 The encode-video scripts all use Level 5.2 Placebo parameters for the best compression/quality.
-The encode-music script transcodes music files into Opus audio.
-The encode-audio transcodes the audio in videos into Opus audio.
-The encode-merge script merges the transcoded AAC audio files, any attachments of the original video, and the encoded 10-bit H.264 file into a new, completed encode.
+
+I'll keep this git updated for as long as I can with all the latest and greatest encoding technologies.
