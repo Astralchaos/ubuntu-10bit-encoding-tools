@@ -13,12 +13,6 @@ encode-compile # compiles/recompiles the encoding tools.
 encode-git-update # downloads the latest git version and recompiles encoding tools.
 encode-merge # merges encoded/transcoded files into a MKV container.
 encode-music # transcodes music files into Opus audio.
-encode-video-crf14
-encode-video-crf16
-encode-video-crf18
-encode-video-crf20
-encode-video-crf24
-
-The encode-video scripts all use Level 5.2 Placebo parameters for the best compression/quality.
+encode-video $CRF # Encodes videos to level 5.2 Placebo parameters for the best compression/quality. Replace $CRF with the CRF value you wish to use.
 
 I'll keep this git updated for as long as I can with all the latest and greatest encoding technologies.
