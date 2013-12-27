@@ -36,7 +36,6 @@ mkdir $compiledir -p
 # Download Git Repositories
 cd $compiledir
 git clone git://git.videolan.org/x264.git
-git clone git://github.com/mstorsjo/fdk-aac.git
 git clone https://github.com/FFmpeg/FFmpeg
 
 # Compile x264
