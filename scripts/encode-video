@@ -1,7 +1,16 @@
 #!/bin/bash
 ## Note : The first argument is the CRF value. The higher the value, the lower the quality. 2 CRF higher is about half the bitrate.
+
+if [ "$1" == "" ]
+   then
+      echo "Enter the CRF Value."
+      read crf
+   else
+      crf="$1"
+fi
+
 find * -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 | while read file
-do
-echo $file
-nice -n 19 x264 --tune animation --level 5.2 --preset placebo --subme 11 --me umh --merange 64 --cabac --weightb --threads 16  --crf $1 --ref 16 --trellis 2 --bframes 16 --b-pyramid normal --deblock 1:1 --aq-mode 2 --aq-strength 1 --psy-rd 0.2:0 --rc-lookahead 100 --output "${file%.*}_encoded.mkv" "$file"
+   do
+      echo $file
+      nice -n 19 x264 --tune animation --level 5.2 --preset placebo --subme 11 --me umh --merange 64 --cabac --weightb --threads 16  --crf $crf --ref 16 --trellis 2 --bframes 16 --b-pyramid normal --deblock 1:1 --aq-mode 2 --aq-strength 1 --psy-rd 0.2:0 --rc-lookahead 100 --output "${file%.*}_encoded.mkv" "$file"
 done
