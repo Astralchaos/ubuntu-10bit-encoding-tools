@@ -1,5 +1,4 @@
 Run install.sh to install the scripts into /usr/local/bin and compile the encoding tools.
-Note: You may recompile the tools at any time by running 'encode-compile'
 
 Simply cd to the directory of your files to process and type the name of one of the encoding scripts.
 It's a pretty good idea to string scripts together with ';'.
@@ -17,3 +16,6 @@ encode-video $CRF # Encodes videos to level 5.2 Placebo parameters for the best 
 encode-video-parallel $CRF # Encodes videos via parallel one thread instances based on the number of CPU cores in your machine. It is very RAM-intensive, but can result in faster encode times.
 
 I'll keep this git updated for as long as I can with all the latest and greatest encoding technologies.
+
+-- NOTICE --
+Currently, only mpv can play MKVs with Opus audio correctly.
