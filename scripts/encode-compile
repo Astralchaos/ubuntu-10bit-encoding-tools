@@ -1,7 +1,8 @@
 #!/bin/bash
 # Variables
 compiledir=$HOME/.local/src/encoding/
-compile='make -j9'
+threads=$(expr $(nproc) + 1)
+compile="make -j$threads"
 flags='march=native -O3 -pipe -Wall'
 
 # Clean up system
