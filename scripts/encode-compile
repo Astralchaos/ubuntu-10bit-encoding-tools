@@ -1,7 +1,7 @@
 #!/bin/bash
 # Variables
 compiledir=$HOME/.local/src/encoding/
-threads=$(expr $(nproc) + 1)
+threads=$(($(nproc) + 1))
 compile="make -j$threads"
 flags='march=native -O3 -pipe -Wall'
 
@@ -41,14 +41,14 @@ git clone https://github.com/FFmpeg/FFmpeg
 # Compile x264
 cd "$compiledir/x264"
 ./configure --enable-static --enable-shared --bit-depth=10
-CFLAGS='$flags' $compile
+CFLAGS="$flags" $compile
 sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
 make distclean
 
 # Compile ffmpeg
 cd "$compiledir/FFmpeg"
 ./configure --enable-shared --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --extra-ldflags=-L/usr/local/lib
-CFLAGS='$flags' $compile
+CFLAGS="$flags" $compile
 sudo checkinstall  -y --pkgname=ffmpeg-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
 hash -r
 make distclean
@@ -56,7 +56,7 @@ make distclean
 # Recompile x264 with lavf support
 cd "$compiledir/x264"
 ./configure --enable-static --enable-shared --bit-depth=10
-CFLAGS='$flags' $compile
+CFLAGS="$flags" $compile
 sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
 make distclean
 
