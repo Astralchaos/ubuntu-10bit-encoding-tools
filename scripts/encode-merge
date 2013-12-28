@@ -1,5 +1,5 @@
 #!/bin/bash
-find * -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 -o -name \*.ogm | while read file
+find ./* -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 -o -name \*.ogm | while read file
 do
 mkvmerge -o "completed/${file%.*}.mkv" "${file%.*}_encoded.mkv" -A -D "$file" "${file%.*}.opus"
 done

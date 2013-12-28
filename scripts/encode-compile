@@ -1,7 +1,7 @@
 #!/bin/bash
 # Variables
 compiledir=$HOME/.local/src/encoding/
-threads=$(expr $(nproc) + 1)
+threads=$(($(nproc) + 1))
 compile="make -j$threads"
 flags='march=native -O3 -pipe -Wall'
 
@@ -22,7 +22,7 @@ sudo apt-get install mkvtoolnix autoconf automake build-essential checkinstall g
 sudo apt-get build-dep x264 libav -y
 
 ## Precise/Saucy dependencies
-if [ -n "$(cat /etc/lsb-release | grep precise)" ] || [ -n "$(cat /etc/lsb-release | grep saucy)" ]
+if [ -n "$(grep precise /etc/lsb-release)" ] || [ -n "$(grep saucy /etc/lsb-release)" ]
    then
       wget http://launchpadlibrarian.net/158788844/libopus-dev_1.1-0ubuntu1_amd64.deb
       sudo dpkg -i libopus-dev*.deb
@@ -30,33 +30,33 @@ if [ -n "$(cat /etc/lsb-release | grep precise)" ] || [ -n "$(cat /etc/lsb-relea
 fi
 
 # Make and/or Clean Directory
-sudo rm $compiledir -R
-mkdir $compiledir -p
+sudo rm "$compiledir" -R
+mkdir "$compiledir" -p
 
 # Download Git Repositories
-cd $compiledir
+cd "$compiledir"
 git clone git://git.videolan.org/x264.git
 git clone https://github.com/FFmpeg/FFmpeg
 
 # Compile x264
-cd $compiledir/x264
+cd "$compiledir/x264"
 ./configure --enable-static --enable-shared --bit-depth=10
-CFLAGS='$flags' $compile
+CFLAGS="$flags" $compile
 sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
 make distclean
 
 # Compile ffmpeg
-cd $compiledir/FFmpeg
+cd "$compiledir/FFmpeg"
 ./configure --enable-shared --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopus --enable-libtheora --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree --enable-x11grab --extra-ldflags=-L/usr/local/lib
-CFLAGS='$flags' $compile
+CFLAGS="$flags" $compile
 sudo checkinstall  -y --pkgname=ffmpeg-git --pkgversion="5:$(date +%Y%m%d%H%M)-git"
 hash -r
 make distclean
 
 # Recompile x264 with lavf support
-cd $compiledir/x264
+cd "$compiledir/x264"
 ./configure --enable-static --enable-shared --bit-depth=10
-CFLAGS='$flags' $compile
+CFLAGS="$flags" $compile
 sudo checkinstall -y --pkgname=x264-git --pkgversion="3:$(./version.sh | awk -F'[" "]' '/POINT/{print $4"+git"$5}')"
 make distclean
 
