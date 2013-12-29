@@ -13,7 +13,7 @@ encode-git-update # downloads the latest git version and recompiles encoding too
 encode-merge # merges encoded/transcoded files into a MKV container.
 encode-music # transcodes music files into Opus audio.
 encode-video $CRF # Encodes videos to level 5.2 Placebo parameters for the best compression/quality. Replace $CRF with the CRF value you wish to use.
-encode-video-parallel $CRF # Encodes videos via parallel one thread instances based on the number of CPU cores in your machine. It is very RAM-intensive, but can result in faster encode times.
+encode-video-parallel $CRF # Encodes two videos in parallel for optimal CPU usage
 
 I'll keep this git updated for as long as I can with all the latest and greatest encoding technologies.
 
