@@ -1,4 +1,6 @@
 #!/bin/bash
+jobs=2 # All of my desktop processors seem to run best with two jobs.
+threads=$(($(nproc) * 3 / 2))
 
 if [ "$1" == "" ]
    then
@@ -8,4 +10,4 @@ if [ "$1" == "" ]
       crf="$1"
 fi
 
-find ./* -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 | parallel -j+0 --gnu nice -n 19 x264 --tune animation --level 5.2 --preset placebo --subme 11 --me umh --merange 64 --cabac --weightb --threads 1  --crf $crf --ref 16 --trellis 2 --bframes 16 --b-pyramid normal --deblock 1:1 --aq-mode 2 --aq-strength 1 --psy-rd 0.2:0 --rc-lookahead 100 --output {.}_encoded.mkv {}
+find ./* -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 | parallel --max-procs=$jobs --gnu nice -n 19 x264 --tune animation --level 5.2 --preset placebo --subme 11 --me umh --merange 64 --cabac --weightb --threads $threads --crf $crf --ref 16 --trellis 2 --bframes 16 --b-pyramid normal --deblock 1:1 --aq-mode 2 --aq-strength 1 --psy-rd 0.2:0 --rc-lookahead 100 --output {.}_encoded.mkv {}
