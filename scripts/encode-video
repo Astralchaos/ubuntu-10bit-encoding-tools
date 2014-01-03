@@ -4,8 +4,7 @@ threads=$(($(nproc) * 3 / 2))
 
 if [ "$1" == "" ]
    then
-      echo "Enter the CRF Value."
-      read crf
+      crf=$(zenity --entry --title "Enter CRF Value")
    else
       crf="$1"
 fi
