@@ -1,5 +1,9 @@
 Run install.sh to install the scripts into /usr/local/bin and compile the encoding tools.
 
+== GUI Method ==
+Right click a directory or file and select a script.
+
+== CLI Method ==
 Simply cd to the directory of your files to process and type the name of one of the encoding scripts.
 It's a pretty good idea to string scripts together with ';'.
 Example: cd ~/Videos/Encode/Node01; encode-audio; encode-video 18; encode-merge
