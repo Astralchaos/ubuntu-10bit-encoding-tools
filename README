@@ -11,11 +11,12 @@ Example2: cd ~/Music/Encode; encode-music
 
 Here are the following commands you may use:
 
-encode-audio # transcodes the audio in videos into Opus audio.
-encode-compile # compiles/recompiles the encoding tools.
-encode-git-update # downloads the latest git version and recompiles encoding tools.
-encode-merge # merges encoded/transcoded files into a MKV container.
-encode-music # transcodes music files into Opus audio.
+encode-audio # Transcodes the audio in videos into Opus audio.
+encode-compile # Compiles/recompiles the encoding tools.
+encode-git-update # Downloads the latest git version and recompiles encoding tools.
+encode-scripts-update # Downloads and installs the latest scripts without recompiling.
+encode-merge # Muxes encoded/transcoded files into a MKV container.
+encode-music # Transcodes music files into Opus audio.
 encode-video $CRF # Encodes videos to level 5.2 Placebo parameters for the best compression/quality. Replace $CRF with the CRF value you wish to use.
 encode-video-parallel $CRF # Encodes two videos in parallel for optimal CPU usage when you have a lot of cores.
 
