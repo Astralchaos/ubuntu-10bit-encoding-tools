@@ -1,0 +1,6 @@
+#!/bin/bash
+cd /tmp
+git clone https://github.com/mmstick/ubuntu-10bit-encoding-tools
+cd ubuntu-10bit-encoding-tools
+sudo install scripts/* /usr/local/bin
+install nautilus-scripts/* ~/.local/share/nautilus/scripts
