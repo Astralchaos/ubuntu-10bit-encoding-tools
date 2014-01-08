@@ -3,6 +3,6 @@
 sudo rm /usr/local/bin/encode-*
 # Then, install the scripts
 sudo install scripts/* /usr/local/bin
-install nautilus-scripts/* ~/.local/nautilus/scripts 
+install nautilus-scripts/* ~/.local/share/nautilus/scripts 
 # Then, run encode-compile which compiles/installs everything.
 encode-compile
