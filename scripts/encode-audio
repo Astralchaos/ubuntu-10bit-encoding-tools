@@ -1,2 +1,2 @@
 #!/bin/bash
-find ./* -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 -o -name \*.ogm | parallel -j+0 --gnu --keep-order '(nice -n 19 ffmpeg -i {} -acodec libopus -vn {.}.opus)'
+find ./* -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 -o -name \*.ogm | parallel -j+0 --gnu --keep-order nice -n 19 ffmpeg -i "{}" -acodec libopus -vn "{.}.opus" -loglevel quiet
