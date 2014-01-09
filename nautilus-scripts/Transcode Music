@@ -1,2 +1,2 @@
 #!/bin/bash
-find ./* -depth -type f -name \*.ogg -o -name \*.flac -o -name \*.m4a -o -name \*.mp3 -o -name \*.ogg | parallel -j+0 --gnu '(nice -n 19 ffmpeg -i "{}" -acodec libopus "{.}.opus" -loglevel quiet)' | zenity --progress --pulsate --auto-close --title "Transcoding Music" --text="Transcoding with $(nproc) cores..."
+find ./* -depth -type f -name \*.ogg -o -name \*.flac -o -name \*.m4a -o -name \*.mp3 -o -name \*.ogg | parallel -j+0 --gnu '(nice -n 19 ffmpeg -i {} -acodec libopus {.}.opus -loglevel quiet)' | zenity --progress --pulsate --auto-close --title "Transcoding Music" --text="Transcoding with $(nproc) cores..."
