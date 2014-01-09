@@ -1,13 +1,7 @@
 #!/bin/bash
 
-threads=$(($(nproc) * 3 / 2))
-
-if [ "$1" == "" ]
-   then
-      crf=$(zenity --entry --title "Enter CRF Value")
-   else
-      crf="$1"
-fi
+threads=$((($(nproc)) * 3 / 2))
+crf=$(zenity --entry --title "Enter CRF Value")
 
 find ./* -depth -type f -name \*.mkv -o -name \*.avi -o -name \*.mp4 | while read file
 do
